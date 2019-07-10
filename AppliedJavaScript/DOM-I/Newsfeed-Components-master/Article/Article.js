@@ -102,6 +102,29 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+*/
+const articles = document.querySelector('.articles');
+console.log('articles', articles);
+
+data.forEach(data => {
+  console.log('creating articles', data);
+});
+
+function creatArticle() {
+  // defining elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('button');
+  const closebutton = document.createElement('button');
+
+  return article;
+}
+
+/*
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
