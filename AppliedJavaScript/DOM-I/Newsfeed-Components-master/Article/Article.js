@@ -133,18 +133,19 @@ function creatArticle(
 
   // set class names
   article.classList.add('article');
-  article.classList.add('article-open');
-  article.classList.add('close');
+  // article.classList.add('article-open');
+  // article.classList.add('close');
   articleDate.classList.add('date');
   expandButton.classList.add('expandButton');
 
   // set text content
+  expandButton.textContent = 'Expand';
   articleTitle.textContent = title;
   articleDate.textContent = date;
   firstPara.textcontent = firstParagraph;
   secondPara.textcontent = secondParagraph;
   thirdPara.textcontent = thirdParagraph;
-  expandButton.textContent = 'Expand';
+
   // closebutton.textContent = 'Close';
 
   expandButton.addEventListener('click', event => {
