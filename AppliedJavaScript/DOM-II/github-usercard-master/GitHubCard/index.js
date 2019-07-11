@@ -2,6 +2,96 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+// const cards = document.querySelector('.cards')
+
+
+const cards = document.querySelector('.cards') //grabbing the DOM
+
+
+const lambdaPeople = [
+  axios.get(`https://api.github.com/users/tetondan`), 
+  axios.get(`https://api.github.com/users/dustinmyers`),
+  axios.get(`https://api.github.com/users/justsml`), 
+  axios.get(`https://api.github.com/users/luishrd`), 
+  axios.get(`https://api.github.com/users/bigknell`),
+  axios.get(`https://api.github.com/users/danbergelt`)
+  ]
+  
+  lambdaPeople.forEach(person => {
+    person
+    .then(data => {
+      const props = data.data;
+      const element = createCard(props);
+      cards.appendChild(element);
+    })
+    console.log(person)
+  });
+
+
+function createCard(gitObj){
+  // create the elements
+  const card = document.createElement('div'); // Parent
+  const cardImg = document.createElement('img'); // Child
+
+  const cardInfo = document.createElement('div'); // Child
+  const cardName = document.createElement('h3'); // grandChild
+  const cardUsername = document.createElement('p') // grandChild
+  const cardLocation = document.createElement('p'); // grandChild
+
+  const cardProfile = document.createElement('p'); // grandChild
+  const profileLink = document.createElement('a') //greatGrandChild
+
+  const cardFollowers = document.createElement('p') // grandChild
+  const cardFollowing = document.createElement('p') // grandChild
+  const cardBio = document.createElement('p') // grandChild
+
+  // set the Style names
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  cardName.classList.add('name')
+  cardUsername.classList.add('username')
+
+  
+
+  // set Content
+  cardImg.src = gitObj.avatar_url
+  cardName.textContent = gitObj.name
+  cardUsername.textContent = gitObj.login
+  cardLocation.textContent = `Location: ${gitObj.location}`
+  cardProfile.textContent = `Profile: `
+  profileLink.href = gitObj.url
+  profileLink.textContent = gitObj.url
+  cardFollowers.textContent = `Followers: ${gitObj.followers}`
+  cardFollowing.textContent = `Following: ${gitObj.following}`
+  cardBio.textContent = `Bio: ${gitObj.bio}`
+
+  // put together
+  card.appendChild(cardImg)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(cardName)
+  cardInfo.appendChild(cardUsername)
+  cardInfo.appendChild(cardLocation)
+  cardInfo.appendChild(cardProfile)
+  cardProfile.appendChild(profileLink)
+  cardInfo.appendChild(cardFollowers)
+  cardInfo.appendChild(cardFollowing)
+  cardInfo.appendChild(cardBio)
+
+  return card;
+
+}
+
+
+
+/* List of LS Instructors Github username's: 
+  tetondan
+  dustinmyers
+  justsml
+  luishrd
+  bigknell
+*/
+
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -24,7 +114,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -43,13 +133,4 @@ const followersArray = [];
     <p>Bio: {users bio}</p>
   </div>
 </div>
-
-*/
-
-/* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
 */
