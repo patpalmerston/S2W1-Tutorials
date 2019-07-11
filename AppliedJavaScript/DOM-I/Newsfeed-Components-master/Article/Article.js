@@ -103,20 +103,6 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 */
-const articles = document.querySelector('.articles');
-
-data.forEach(data => {
-  articles.appendChild(
-    creatArticle(
-      data.title,
-      data.date,
-      data.firstParagraph,
-      data.secondParagraph,
-      data.thirdParagraph
-    )
-  );
-  // console.log(data.firstParagraph);
-});
 
 function creatArticle(
   title,
@@ -125,6 +111,7 @@ function creatArticle(
   secondParagraph,
   thirdParagraph
 ) {
+  // console.log(firstParagraph);
   // defining elements
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
@@ -146,6 +133,8 @@ function creatArticle(
 
   // set class names
   article.classList.add('article');
+  article.classList.add('article-open');
+  article.classList.add('close');
   articleDate.classList.add('date');
   expandButton.classList.add('expandButton');
 
@@ -158,13 +147,30 @@ function creatArticle(
   expandButton.textContent = 'Expand';
   // closebutton.textContent = 'Close';
 
-  expandButton.eventListener('click', event => {
+  expandButton.addEventListener('click', event => {
     console.log('button clicked', event.target);
-    expandButton.classList.toggle('article-open');
+    article.classList.toggle('article-open');
   });
+
+  console.log(expandButton);
 
   return article;
 }
+
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  articles.appendChild(
+    creatArticle(
+      data.title,
+      data.date,
+      data.firstParagraph,
+      data.secondParagraph,
+      data.thirdParagraph
+    )
+  );
+  // console.log(data.firstParagraph);
+});
 
 /*
 
