@@ -104,22 +104,64 @@ const data = [
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 */
 const articles = document.querySelector('.articles');
-console.log('articles', articles);
 
 data.forEach(data => {
-  console.log('creating articles', data);
+  articles.appendChild(
+    creatArticle(
+      data.title,
+      data.date,
+      data.firstParagraph,
+      data.secondParagraph,
+      data.thirdParagraph
+    )
+  );
+  // console.log(data.firstParagraph);
 });
 
-function creatArticle() {
+function creatArticle(
+  title,
+  date,
+  firstParagraph,
+  secondParagraph,
+  thirdParagraph
+) {
   // defining elements
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
-  const firstParagraph = document.createElement('p');
-  const secondParagraph = document.createElement('p');
-  const thirdParagraph = document.createElement('p');
-  const expandButton = document.createElement('button');
-  const closebutton = document.createElement('button');
+  const firstPara = document.createElement('p');
+  const secondPara = document.createElement('p');
+  const thirdPara = document.createElement('p');
+  const expandButton = document.createElement('span');
+  // const closebutton = document.createElement('button');
+
+  // Setup structur of elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstPara);
+  article.appendChild(secondPara);
+  article.appendChild(thirdPara);
+  article.appendChild(expandButton);
+  // article.appendChild(closebutton);
+
+  // set class names
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  // set text content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstPara.textcontent = firstParagraph;
+  secondPara.textcontent = secondParagraph;
+  thirdPara.textcontent = thirdParagraph;
+  expandButton.textContent = 'Expand';
+  // closebutton.textContent = 'Close';
+
+  expandButton.eventListener('click', event => {
+    console.log('button clicked', event.target);
+    expandButton.classList.toggle('article-open');
+  });
 
   return article;
 }
@@ -127,6 +169,9 @@ function creatArticle() {
 /*
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  */
+
+/*
 
   Step 3: return the entire component.
 
